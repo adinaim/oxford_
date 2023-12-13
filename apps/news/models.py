@@ -4,8 +4,6 @@ from django.contrib.auth import get_user_model
 
 from datetime import datetime
 
-# current = str(datetime.now())
-
 
 User = get_user_model()
 

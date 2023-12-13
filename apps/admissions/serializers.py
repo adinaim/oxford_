@@ -17,7 +17,6 @@ class AdmissionsCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = AdmissionsPage
         fields = '__all__'
-        # exclude = ['news_image_carousel']
 
     admissions_image_carousel = serializers.ListField(
         child=serializers.ImageField(),
@@ -67,14 +66,13 @@ class AdmissionsImageSerializer(serializers.ModelSerializer):
         model = AdmissionsImage
         fields = 'image',
 
-##################################
+
 class AdmissionsInfoCreateSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
 
     class Meta:
         model = AdmissionsInfo
         fields = '__all__'
-        # exclude = ['news_image_carousel']
 
     admissions_info_image_carousel = serializers.ListField(
         child=serializers.ImageField(),

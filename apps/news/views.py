@@ -36,8 +36,6 @@ class NewsViewSet(ModelViewSet):
             self.permission_classes = [AllowAny]
         if self.action in ['create']:
             self.permission_classes = [IsAdminUser, IsAuthenticated]
-        if self.action in ['destroy']:
+        if self.action in ['destroy', 'update', 'partial_update']:
             self.permission_classes in [IsOwner, IsAdminUser]
-        if self.action in ['update', 'partial_update']:
-            self.permission_classes = [IsOwner, IsAdminUser]
         return super().get_permissions()

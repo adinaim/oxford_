@@ -9,7 +9,6 @@ User = get_user_model()
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
-
     password_confirm = serializers.CharField(required=True)
 
     class Meta:
@@ -49,12 +48,12 @@ class ActivationSerializer(serializers.Serializer):
 
     def validate_user(self, username):
         if not User.objects.filter(username=username).exists():
-            raise serializers.ValidationError('Пользователя с таким ником не существует.')
+            raise serializers.ValidationError('Could not find a user with such username.')
         return username
 
     def validate_code(self, code):
         if not User.objects.filter(activation_code=code).exists():
-            raise serializers.ValidationError('Некорректный код.')
+            raise serializers.ValidationError('Incorrect code.')
         return code
 
     def activate_account(self):
@@ -85,7 +84,7 @@ class ChangePasswordSerializer(serializers.Serializer):
     def validate_old_password(self, old_password):
         user = self.context.get('request').user
         if not user.check_password(old_password):
-            raise serializers.ValidationError('Неправильнвй пароль!'.upper())
+            raise serializers.ValidationError('Incorrect password!'.upper()) 
         return old_password
 
     def validate(self, attrs: dict):
@@ -94,11 +93,11 @@ class ChangePasswordSerializer(serializers.Serializer):
         new_password_confirm = attrs.get('new_password_confirm')
         if new_password != new_password_confirm:
             raise serializers.ValidationError(
-                'Пароли не совпадают.'
+                'Passwords do not match.'     
             )
         if old_password == new_password:
             raise serializers.ValidationError(
-                'Старый и новый пароль совпадают.Придумайте новый пароль!!!'
+                'The old password is the same as the new one. Make up a new password.'   
             )
         return attrs
 
@@ -126,7 +125,7 @@ class SetRestoredPasswordSerializer(serializers.Serializer):
     def validate_code(self, code):
         if not User.objects.filter(activation_code=code).exists():
             raise serializers.ValidationError(
-                'Некорректный код.'
+                'Incorrect code.'
             )
         return code 
 
@@ -135,7 +134,7 @@ class SetRestoredPasswordSerializer(serializers.Serializer):
         new_password_confirm = attrs.get('new_password_confirm')
         if new_password != new_password_confirm:
             raise serializers.ValidationError(
-                'Пароли не совпадают.'
+                'Passwords do not match.'
             )
         return attrs
 

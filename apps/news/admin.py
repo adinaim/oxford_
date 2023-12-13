@@ -6,4 +6,4 @@ from .models import (
 )
 
 admin.site.register(News)
-admin.site.register(NewsImage )
+admin.site.register(NewsImage)

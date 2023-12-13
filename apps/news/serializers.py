@@ -12,7 +12,6 @@ class NewsCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = '__all__'
-        # exclude = ['news_image_carousel']
 
     news_image_carousel = serializers.ListField(
         child=serializers.ImageField(),

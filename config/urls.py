@@ -26,6 +26,13 @@ urlpatterns = [
    path('api/admissions/', include('apps.admissions.urls')),
    path('api/news/', include('apps.news.urls')),
 ]
+
+
+
+
+
+
+
 """
 python3 manage.py makemigrations
 python3 manage.py migrate
