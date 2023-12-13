@@ -1,0 +1,13 @@
+django
+djangorestframework
+psycopg2-binary # ORM, work with databases, для работы с базами данных
+Pillow # work with images, для работы с картинками
+python-decouple # work with hashing, шифровка данных
+
+wheel 
+django-filter
+drf-yasg
+djangorestframework-simplejwt
+python-slugify
+
+django-cors-headers
