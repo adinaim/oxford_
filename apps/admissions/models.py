@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+
 class AdmissionsPage(models.Model):
 
     title = models.CharField(max_length=100)
@@ -32,7 +33,7 @@ class AdmissionsPage(models.Model):
         verbose_name_plural = 'Admissions'
 
 
-class AdmissionsImage(models.Model):
+class AdmissionsImages(models.Model):
     image = models.ImageField(upload_to='media/admissions_image')
     page = models.ForeignKey(
         to=AdmissionsPage,
@@ -42,7 +43,6 @@ class AdmissionsImage(models.Model):
 
 
 class AdmissionsInfo(models.Model):
-
     title = models.CharField(max_length=100)
     slug = models.SlugField(max_length=120, primary_key=True, blank=True)
     user = models.ForeignKey(
@@ -67,13 +67,12 @@ class AdmissionsInfo(models.Model):
             self.slug = str(slugify(self.title))[:8]
         return super().save(*args, **kwargs)
 
-
     class Meta:
         verbose_name = 'Admissions'
         verbose_name_plural = 'Admissions'
 
 
-class AdmissionsInfoImage(models.Model):
+class AdmissionsInfoImages(models.Model):
     image = models.ImageField(upload_to='media/admissions_image')
     info = models.ForeignKey(
         to=AdmissionsInfo,

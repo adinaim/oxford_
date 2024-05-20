@@ -1,4 +1,4 @@
-#!/Users/adinai_m/oxford_site/venv/bin/python3
+#!/Users/adinai_m/oxford_classes/oxford_site/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

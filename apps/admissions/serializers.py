@@ -2,9 +2,9 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from .models import (
     AdmissionsPage,
-    AdmissionsImage,
+    AdmissionsImages,
     AdmissionsInfo,
-    AdmissionsInfoImage,
+    AdmissionsInfoImages,
 )
 
 
@@ -28,8 +28,8 @@ class AdmissionsCreateSerializer(serializers.ModelSerializer):
         admissions_page = AdmissionsPage.objects.create(**validated_data)
         images = []
         for image in admissions_carousel:
-            images.append(AdmissionsImage(page=admissions_page, image=image))
-        AdmissionsImage.objects.bulk_create(images)
+            images.append(AdmissionsImages(page=admissions_page, image=image))
+        AdmissionsImages.objects.bulk_create(images)
         admissions_page.save()
         return admissions_page
 
@@ -63,7 +63,7 @@ class AdmissionsListSerializer(serializers.ModelSerializer):
     
 class AdmissionsImageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AdmissionsImage
+        model = AdmissionsImages
         fields = 'image',
 
 
@@ -84,8 +84,8 @@ class AdmissionsInfoCreateSerializer(serializers.ModelSerializer):
         admissions_info = AdmissionsInfo.objects.create(**validated_data)
         images = []
         for image in admissions_info_carousel:
-            images.append(AdmissionsInfoImage(info=admissions_info, image=image))
-        AdmissionsInfoImage.objects.bulk_create(images)
+            images.append(AdmissionsInfoImages(info=admissions_info, image=image))
+        AdmissionsInfoImages.objects.bulk_create(images)
         admissions_info.save()
         return admissions_info
 
@@ -116,5 +116,5 @@ class AdmissionsInfoListSerializer(serializers.ModelSerializer):
     
 class AdmissionsInfoImageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AdmissionsInfoImage
+        model = AdmissionsInfoImages
         fields = 'image',

@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/adinai_m/oxford_site/venv"
+VIRTUAL_ENV="/Users/adinai_m/oxford_classes/oxford_site/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

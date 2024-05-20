@@ -23,17 +23,7 @@ urlpatterns = [
    path('admin/', admin.site.urls),
 
    path('api/account/', include('apps.account.urls')),
+   path('api/academics/', include('apps.academics.urls')),
    path('api/admissions/', include('apps.admissions.urls')),
    path('api/news/', include('apps.news.urls')),
 ]
-
-
-
-
-
-
-
-"""
-python3 manage.py makemigrations
-python3 manage.py migrate
-"""

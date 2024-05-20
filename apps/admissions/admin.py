@@ -2,8 +2,9 @@ from django.contrib import admin
 
 from .models import (
     AdmissionsPage, 
-    AdmissionsImage
+    AdmissionsImages,
+    AdmissionsInfo,
+    AdmissionsInfoImages
 )
 
-admin.site.register(AdmissionsPage)
-admin.site.register(AdmissionsImage )
+admin.site.register([AdmissionsPage, AdmissionsImages, AdmissionsInfo, AdmissionsInfoImages])

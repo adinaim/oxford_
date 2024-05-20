@@ -1,5 +1,5 @@
 from pathlib import Path    
-from decouple import config  
+from decouple import config
 import os   
 from datetime import timedelta    
 
@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
 
     'apps.account',
+    'apps.academics',
     'apps.admissions',
     'apps.news',
 ]
@@ -168,16 +169,11 @@ REST_FRAMEWORK = {
 
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-
-        # 'oauth2_provider.contrib.rest_framework.OAuth2Authentication',  # django-oauth-toolkit >= 1.0.0
-        # 'drf_social_oauth2.authentication.SocialAuthentication',
     ),
     'DATE_INPUT_FORMATS': ['%d.%m.%Y'],
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     # 'PAGE_SIZE': 4,
 }
-
-
 
 EMAIL_BACKENDS = 'django.core.mail.backends.smtp.EmailBackend' 
 EMAIL_HOST_USER = config('EMAIL_HOST_USER') 
