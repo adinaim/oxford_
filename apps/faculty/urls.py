@@ -2,14 +2,14 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 
 from .views import (
-    NewsViewSet, 
-    EventViewSet
+    DepartmentViewSet,
+    FacultyViewSet,
 )
 
 
 router = DefaultRouter()
-router.register('news', NewsViewSet)
-router.register('event', EventViewSet)
+router.register('department', DepartmentViewSet)
+router.register('faculty', FacultyViewSet)
 
 
 urlpatterns = [ 

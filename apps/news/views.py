@@ -1,17 +1,19 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import (
     AllowAny,
-    IsAuthenticated,
     IsAdminUser,
 )
 
-
-from .permissions import IsOwner
-from .models import News
+from .models import (
+    News,
+    Event
+    )
 from .serializers import (
     NewsCreateSerializer,
     NewsListSerializer,
     NewsSerializer,
+    EventCreateSerializer,
+    EventSerializer
 )
 
 
@@ -34,8 +36,25 @@ class NewsViewSet(ModelViewSet):
     def get_permissions(self):
         if self.action in ['list', 'retrieve']:
             self.permission_classes = [AllowAny]
-        if self.action in ['create']:
-            self.permission_classes = [IsAdminUser, IsAuthenticated]
-        if self.action in ['destroy', 'update', 'partial_update']:
-            self.permission_classes in [IsOwner, IsAdminUser]
+        if self.action in ['create', 'destroy', 'update', 'partial_update']:
+            self.permission_classes = [IsAdminUser]
+        return super().get_permissions()
+    
+
+class EventViewSet(ModelViewSet):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+
+    def get_serializer_class(self):
+        if self.action in ['list', 'retrieve', 'partial_update', 'update']:
+            return EventSerializer
+        elif self.action == 'create':
+            return EventCreateSerializer
+        return super().get_serializer_class()
+
+    def get_permissions(self):
+        if self.action in ['list', 'retrieve']:
+            self.permission_classes = [AllowAny]
+        if self.action in ['create', 'destroy', 'update', 'partial_update']:
+            self.permission_classes = [IsAdminUser]
         return super().get_permissions()

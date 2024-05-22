@@ -1,21 +1,11 @@
 from django.db import models
 from slugify import slugify
-from django.contrib.auth import get_user_model
-
-
-User = get_user_model()
 
 
 class AcademicsPage(models.Model):
 
     title = models.CharField(max_length=100)
     slug = models.SlugField(max_length=120, primary_key=True, blank=True)
-    user = models.ForeignKey(
-        to=User,
-        on_delete=models.CASCADE,
-        verbose_name='user',
-        related_name='academics',
-    )
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -34,7 +24,7 @@ class AcademicsPage(models.Model):
 
 
 class AcademicsImages(models.Model):
-    image = models.ImageField(upload_to='media/academics_image')
+    image = models.ImageField(upload_to='media/academics_images')
     page = models.ForeignKey(
         to=AcademicsPage,
         on_delete=models.CASCADE,
@@ -45,12 +35,6 @@ class AcademicsImages(models.Model):
 class AcademicsInfo(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(max_length=120, primary_key=True, blank=True)
-    user = models.ForeignKey(
-        to=User,
-        on_delete=models.CASCADE,
-        verbose_name='user',
-        related_name='academics_info_user',
-    )
     page = models.ForeignKey(
         to=AcademicsPage,
         on_delete=models.CASCADE,

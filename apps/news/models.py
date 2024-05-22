@@ -68,7 +68,7 @@ class Tag(models.Model):
         verbose_name_plural = 'Tags'
     
 
-class Events(models.Model):
+class Event(models.Model):
     TYPE_CHOICES = (
         ('out', 'Outside of school'),
         ('at', 'At school'),
@@ -81,10 +81,6 @@ class Events(models.Model):
     time = models.TimeField()
     description = models.CharField(max_length=200)
     event_type = models.CharField(max_length=20, choices=TYPE_CHOICES)
-    user = models.ForeignKey(
-        to=User,
-        on_delete=models.DO_NOTHING
-    )
 
     def __str__(self) -> str:
         return self.title
@@ -100,4 +96,9 @@ class Events(models.Model):
 
 
 class EventImage(models.Model):
-    ...
+    image = models.ImageField(upload_to='media/events_images')
+    event = models.ForeignKey(
+        to=Event,
+        on_delete=models.CASCADE,
+        related_name='events_images'
+    )

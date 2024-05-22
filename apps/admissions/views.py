@@ -25,9 +25,6 @@ class AdmissionsPageViewSet(ModelViewSet):
     queryset = AdmissionsPage.objects.all()
     serializer_class = AdmissionsPageSerializer
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
     def get_serializer_class(self):
         if self.action in ['list', 'partial_update', 'update']:
             return AdmissionsListSerializer
@@ -40,21 +37,14 @@ class AdmissionsPageViewSet(ModelViewSet):
     def get_permissions(self):
         if self.action in ['list', 'retrieve']:
             self.permission_classes = [AllowAny]
-        if self.action in ['create']:
-            self.permission_classes = [IsAdminUser, IsAuthenticated]
-        if self.action in ['destroy']:
-            self.permission_classes in [IsOwner, IsAdminUser]
-        if self.action in ['update', 'partial_update']:
-            self.permission_classes = [IsOwner, IsAdminUser]
+        if self.action in ['create', 'destroy', 'update', 'partial_update']:
+            self.permission_classes = [IsAdminUser]
         return super().get_permissions()
     
 
 class AdmissionsInfoViewSet(ModelViewSet):
     queryset = AdmissionsInfo.objects.all()
     serializer_class = AdmissionsInfoSerializer
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
 
     def get_serializer_class(self):
         if self.action in ['list', 'partial_update', 'update']:
@@ -68,10 +58,6 @@ class AdmissionsInfoViewSet(ModelViewSet):
     def get_permissions(self):
         if self.action in ['list', 'retrieve']:
             self.permission_classes = [AllowAny]
-        if self.action in ['create']:
-            self.permission_classes = [IsAdminUser, IsAuthenticated]
-        if self.action in ['destroy']:
-            self.permission_classes in [IsOwner, IsAdminUser]
-        if self.action in ['update', 'partial_update']:
-            self.permission_classes = [IsOwner, IsAdminUser]
+        if self.action in ['create', 'destroy', 'update', 'partial_update']:
+            self.permission_classes = [IsAdminUser]
         return super().get_permissions()

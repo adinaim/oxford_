@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from django.contrib.auth import get_user_model
+
 from .models import (
     AdmissionsPage,
     AdmissionsImages,
@@ -8,12 +8,7 @@ from .models import (
 )
 
 
-User = get_user_model()
-
-
 class AdmissionsCreateSerializer(serializers.ModelSerializer):
-    user = serializers.ReadOnlyField(source='user.username')
-
     class Meta:
         model = AdmissionsPage
         fields = '__all__'
@@ -32,11 +27,6 @@ class AdmissionsCreateSerializer(serializers.ModelSerializer):
         AdmissionsImages.objects.bulk_create(images)
         admissions_page.save()
         return admissions_page
-
-    def validate(self, attrs):
-        user = self.context['request'].user
-        attrs['user'] = user
-        return attrs
     
     
 class AdmissionsPageSerializer(serializers.ModelSerializer):
@@ -68,8 +58,6 @@ class AdmissionsImageSerializer(serializers.ModelSerializer):
 
 
 class AdmissionsInfoCreateSerializer(serializers.ModelSerializer):
-    user = serializers.ReadOnlyField(source='user.username')
-
     class Meta:
         model = AdmissionsInfo
         fields = '__all__'
@@ -88,11 +76,6 @@ class AdmissionsInfoCreateSerializer(serializers.ModelSerializer):
         AdmissionsInfoImages.objects.bulk_create(images)
         admissions_info.save()
         return admissions_info
-
-    def validate(self, attrs):
-        user = self.context['request'].user
-        attrs['user'] = user
-        return attrs
     
     
 class AdmissionsInfoSerializer(serializers.ModelSerializer):
