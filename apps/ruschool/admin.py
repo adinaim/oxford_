@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import (
+    RuSchoolPage, 
+    RuSchoolImages,
+    RuSchoolInfo,
+    RuSchoolInfoImages
+)
+
+admin.site.register([RuSchoolPage, RuSchoolImages, RuSchoolInfo, RuSchoolInfoImages])

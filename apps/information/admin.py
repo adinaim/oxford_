@@ -1,3 +1,11 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import (
+    AboutUsPage, 
+    AboutUsPageImage,
+    AboutUsInfo,
+    AboutUsInfoImage,
+    Information
+)
+
+admin.site.register([AboutUsPage, AboutUsPageImage, AboutUsInfo, AboutUsInfoImage, Information])

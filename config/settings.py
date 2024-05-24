@@ -34,10 +34,16 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
 
-    'apps.account',
     'apps.academics',
+    'apps.account',
     'apps.admissions',
+    'apps.engschool',
+    'apps.faculty',
+    'apps.information',
+    'apps.kindergarten',
     'apps.news',
+    'apps.questions',
+    'apps.ruschool',
 ]
 
 MIDDLEWARE = [

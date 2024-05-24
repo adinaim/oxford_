@@ -2,8 +2,10 @@ from django.contrib import admin
 
 from .models import (
     News, 
-    NewsImage
+    NewsImage,
+    Tag,
+    Event,
+    EventImage
 )
 
-admin.site.register(News)
-admin.site.register(NewsImage)
+admin.site.register([News, NewsImage, Tag, Event, EventImage])

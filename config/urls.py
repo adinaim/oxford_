@@ -22,8 +22,14 @@ urlpatterns = [
    path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
    path('admin/', admin.site.urls),
 
-   path('api/account/', include('apps.account.urls')),
    path('api/academics/', include('apps.academics.urls')),
+   path('api/account/', include('apps.account.urls')),
    path('api/admissions/', include('apps.admissions.urls')),
+   path('api/engschool/', include('apps.engschool.urls')),
+   path('api/faculty/', include('apps.faculty.urls')),
+   path('api/information/', include('apps.information.urls')),
+   path('api/kindergarten/', include('apps.kindergarten.urls')),
    path('api/news/', include('apps.news.urls')),
+   path('api/questions/', include('apps.questions.urls')),
+   path('api/ruschool/', include('apps.ruschool.urls')),
 ]
