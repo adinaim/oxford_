@@ -11,3 +11,6 @@ djangorestframework-simplejwt
 python-slugify
 
 django-cors-headers
+
+python-telegram-bot
+requests
