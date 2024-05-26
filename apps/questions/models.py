@@ -13,17 +13,15 @@ class FAQ(models.Model):
 
 
 class ContactUs(models.Model):    
-    TOPIC_CHOICES = (     # add
-        (),
-        (),
-        (),
-        (),
-        (),
-        ()
+    TOPIC_CHOICES = (                 # add
+        ('admissions', 'Admissions'),
+        ('academics', 'Academics'),
+        ('events', 'Events'),
+        ('general', 'General'),
     )
 
     name = models.CharField(max_length=30)
-    topic = models.CharField(max_length=..., choices=TOPIC_CHOICES)
+    topic = models.CharField(max_length=10, choices=TOPIC_CHOICES)
     phone = models.CharField(max_length=13)
     email = models.EmailField()
     question = models.CharField(max_length=400)
